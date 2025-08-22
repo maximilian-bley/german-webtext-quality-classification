@@ -2,6 +2,13 @@
 
 Train and evaluation code for the paper **Bootstrapping a Sentence-Level Corpus Quality Classifier for Web Text using Active Learning (RANLP25)**.
 
+Models: 
+- <https://huggingface.co/mbley/german-webtext-quality-classifier-base>
+- <https://huggingface.co/mbley/german-webtext-quality-classifier-small>
+
+Data:
+- <https://huggingface.co/datasets/mbley/german-webtext-quality-classification-dataset>
+
 ## Requirements
 
 ## Installation
