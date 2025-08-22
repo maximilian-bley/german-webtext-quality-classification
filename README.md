@@ -1,6 +1,6 @@
 # german-webtext-quality-classification
 
-Train and evaluation code for the paper **Bootstrapping a Sentence-Level Corpus Quality Classifier for Web Text using Active Learning** (RANLP25).
+Train and evaluation code for the paper **Bootstrapping a Sentence-Level Corpus Quality Classifier for Web Text using Active Learning (RANLP25)**.
 
 ## Requirements
 
