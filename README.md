@@ -25,7 +25,7 @@ setfit==1.1.2
 
 `git clone --branch "v2.0.0.dev2" https://github.com/webis-de/small-text.git .`
 
-Adjust `_fit` in `integrations/transformers/classifiers/setfit.py` to use customized training arguments in `main.py`
+Adjust `_fit` in `small-text/small_text/integrations/transformers/classifiers/setfit.py` to use customized training arguments in `main.py`
 
 ```python
 def _fit(self, sub_train, sub_valid, setfit_train_kwargs):
@@ -47,16 +47,16 @@ Launch the Argilla annotation platform locally.
 
 ### 2. Create ST
 
-Initialize a Sentence Transformer using the base model `distilbert/distilbert-base-german-cased` with mean pooling.
+Initialize a Sentence Transformer using the base model `distilbert/distilbert-base-multilingual-cased` with mean pooling.
 
-`python create_sentence_transformers_model.py`
+`src/python create_sentence_transformers_model.py`
 
 ### 3. Active Learning
 
 Start the Active Learning loop.
 
 ```bash
-python main.py \
+python src/main.py \
     --al_pool <path_to_unlabeled_train_data> \
     --query_strategy multi-label-aal \
     --output_dir <path_to_output_dir> \
@@ -73,7 +73,7 @@ python main.py \
 Evaluates a model on `data/goldstandard.csv`. Defaults to <https://huggingface.co/mbley/german-webtext-quality-classifier-base>.
 
 ```bash
-python evaluate.py --path <path_to_model_dir>
+python src/evaluate.py --path <path_to_model_dir>
 ```
 
 ## Acknowledgments
