@@ -11,9 +11,70 @@ Data:
 
 ## Requirements
 
+```
+argilla==2.8.0
+argilla-v1==1.29.1
+setfit==1.1.2
+```
+
 ## Installation
 
+`pip install -r requirements.txt`
+
+### small-text
+
+`git clone --branch "v2.0.0.dev2" https://github.com/webis-de/small-text.git .`
+
+Adjust `_fit` in `integrations/transformers/classifiers/setfit.py` to use customized training arguments in `main.py`
+
+```python
+def _fit(self, sub_train, sub_valid, setfit_train_kwargs):
+    args = self.setfit_model_args.trainer_kwargs['args']
+    trainer = setfit.Trainer(model=self.model,args=args,train_dataset=sub_train,eval_dataset=sub_valid,)
+    trainer.train()
+    return self
+```
+
+`pip install -e ./small-text`
+
 ## Usage
+
+### 1. Argilla
+
+Launch the Argilla annotation platform locally.
+
+`docker compose -f docker-compose.yaml up -d`
+
+### 2. Create ST
+
+Initialize a Sentence Transformer using the base model `distilbert/distilbert-base-german-cased` with mean pooling.
+
+`python create_sentence_transformers_model.py`
+
+### 3. Active Learning
+
+Start the Active Learning loop.
+
+```bash
+python main.py \
+    --al_pool <path_to_unlabeled_train_data> \
+    --query_strategy multi-label-aal \
+    --output_dir <path_to_output_dir> \
+    --init_data <path_to_init_data> \
+    --ds_name <argilla_dataset_name> \
+    --api_url localhost:6900 \
+    --log_dir <path_to_log_dir> \
+```
+
+`al_pool` needs to be a (pickled) Pandas compatible file with a column named `text`.
+
+### 4. Evaluation
+
+Evaluates a model on `data/goldstandard.csv`. Defaults to <https://huggingface.co/mbley/german-webtext-quality-classifier-base>.
+
+```bash
+python evaluate.py --path <path_to_model_dir>
+```
 
 ## Acknowledgments
 
