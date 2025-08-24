@@ -14,7 +14,7 @@ from small_text.base import LABEL_IGNORED
 from initialize import load_data, get_datasets, get_query_strategy, get_active_learner
 
 USE_SETFIT = True
-EMBEDDING_MODEL  = "./distilbert-base-german-cased-sent" # could be any sentence_transformer
+EMBEDDING_MODEL  = "./distilbert-base-multilingual-cased-sent" # could be any sentence_transformer, see: create_sentence_transformer_model.py
 TIME_STAMP = datetime.now().strftime("%b%d_%H-%M-%S")
 
 LABELS = ['SF','GF','RF','ZF','NLC','SP']

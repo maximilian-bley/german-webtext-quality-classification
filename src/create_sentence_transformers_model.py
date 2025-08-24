@@ -1,9 +1,9 @@
 from sentence_transformers import SentenceTransformer, models
 
-hub_id = 'distilbert/distilbert-base-german-cased'
+hub_id = 'distilbert/distilbert-base-multilingual-cased'
 max_seq_length = 512
 
-model_name = 'distilbert-base-german-cased-sent'
+model_name = 'distilbert/distilbert-base-multilingual-cased-sent'
 
 word_embedding_model = models.Transformer(hub_id, max_seq_length=max_seq_length)
 
